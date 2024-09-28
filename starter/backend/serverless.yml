@@ -20,7 +20,7 @@ provider:
     accountId: '912468010094'
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    JWKURL: 'https://dev-1vi5xtwstbn62ed5.us.auth0.com/.well-known/jwks.json'
+    JWKURL: 'https://dev-rr0bgdqh6yltrw73.us.auth0.com/.well-known/jwks.json'
     TODOS_BUCKET: todos-${self:provider.environment.accountId}-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
