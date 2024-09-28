@@ -43,3 +43,7 @@ The application allows users to create, update, delete TODO items
 # AuthAPP
 
 ![alt text](image-16.png)
+
+# Dynamo DB
+
+![alt text](image-17.png)

@@ -7,15 +7,17 @@ import {
     PutCommand,
     UpdateCommand
 } from "@aws-sdk/lib-dynamodb";
+import AWSXRay from 'aws-xray-sdk';
 
 const logger = createLogger("todoAccess");
 
 const TODOS_TABLE = process.env.TODOS_TABLE;
 const TODOS_CREATED_AT_INDEX = process.env.TODOS_CREATED_AT_INDEX
+const XRayDynamoDBClient = AWSXRay.captureAWSClient(new DynamoDBClient({}));
 
 export class TodosAccess {
     constructor(
-        client = new DynamoDBClient({}),
+        client = XRayDynamoDBClient,
         todosTable = TODOS_TABLE,
         todosCreatedAtIndex = TODOS_CREATED_AT_INDEX
     ) {
