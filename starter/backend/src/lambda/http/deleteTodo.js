@@ -1,8 +1,27 @@
+import { parseUserId } from "../../auth/utils.mjs";
+import { deleteTodo } from "../../businessLogic/todos.js";
+import middy from '@middy/core'
+import cors from '@middy/http-cors'
+import httpErrorHandler from '@middy/http-error-handler'
 
-export function handler(event) {
-  const todoId = event.pathParameters.todoId
+export const handler = middy()
+    .use(httpErrorHandler())
+    .use(
+        cors({
+            credentials: true
+        })
+    )
+    .handler( 
+        async (event) => {
+            const todoId = event.pathParameters.todoId
+            const userId = parseUserId(event.headers.Authorization)
 
-  // TODO: Remove a TODO item by id
-  return undefined
-}
+            await deleteTodo(todoId, userId)
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify({})
+            }
+        }
+    )
 
